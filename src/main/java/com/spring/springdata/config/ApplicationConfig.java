@@ -37,12 +37,9 @@ public class ApplicationConfig {
     private String showSQL;
 
     @Bean
-    public DriverManagerDataSource DataSource() {
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    public DriverManagerDataSource dataSource() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource(url, user,password);
         dataSource.setDriverClassName(driver);
-        dataSource.setUrl(url);
-        dataSource.setUsername(user);
-        dataSource.setPassword(password);
         return dataSource;
     }
 
@@ -58,7 +55,7 @@ public class ApplicationConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        factoryBean.setDataSource((DataSource()));
+        factoryBean.setDataSource((dataSource()));
         factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         factoryBean.setPackagesToScan("com.example.springdata.entity");
         factoryBean.setJpaProperties(hibernateProps());

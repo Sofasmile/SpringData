@@ -23,7 +23,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Accessors(chain = true)
 @Table(name = "students")
-@EqualsAndHashCode(exclude = {"id"})
 public class Student {
     @Id
     @Column(name = "id")

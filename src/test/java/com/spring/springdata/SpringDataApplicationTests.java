@@ -63,14 +63,14 @@ public class SpringDataApplicationTests {
     public void updateStudentTest() {
         student.setName("Update");
         service.updateStudent(student);
-        Student updated = service.getStudentById(student.getId()).get();
+        Student updated = service.getStudentById(student.getId());
         assertEquals(student.getName(), updated.getName());
     }
 
     @Test
     public void getStudentByIdTest() {
         Long id = student.getId();
-        Student target = service.getStudentById(id).get();
+        Student target = service.getStudentById(id);
         assertEquals(student, target);
     }
 
